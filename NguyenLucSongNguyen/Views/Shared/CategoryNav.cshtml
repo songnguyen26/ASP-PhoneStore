@@ -1,0 +1,6 @@
+﻿@model IEnumerable<NguyenLucSongNguyen.Context.Category>
+
+@foreach(var  category in Model)
+{ 
+    @Html.ActionLink(category.name, "productByCat", "Product", new {@id=category.id}, new { @class = "nav-link" })
+}    
