@@ -14,16 +14,14 @@ namespace NguyenLucSongNguyen.Controllers
         public ActionResult Index()
         {
 
-            var product = context.Products
-                          .Where(p => p.isOnSale ==1) 
-                          .Take(3)            
-                          .ToList();
+            var product = context.Products.ToList();
             var category = context.Categories.ToList();
-
+            var brand = context.Brands.Where(b => b.show == true).ToList();
             var viewModel = new HomeModel
             {
                 Products = product,
-                Categories = category
+                Categories = category,
+                Brands = brand
             };
 
             return View(viewModel);

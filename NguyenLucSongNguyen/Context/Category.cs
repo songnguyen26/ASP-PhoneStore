@@ -11,12 +11,17 @@ namespace NguyenLucSongNguyen.Context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
     public partial class Category
     {
         public int id { get; set; }
         public string name { get; set; }
         public string image { get; set; }
         public Nullable<bool> show { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase ImageUpload { get; set; }
+        [NotMapped]
+        public bool ShowDropdown { get; set; }
     }
 }

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<NguyenLucSongNguyen.Context.Category>
+
+@{
+    ViewBag.Title = "Quản lý danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/adminLayout.cshtml";
+}
+
+
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12 text-right">
+                    <a class="btn btn-sm btn-success" href="@Url.Action("Create","Category")">
+                        <i class="fas fa-plus"></i> Thêm
+                    </a>
+                    <a class="btn btn-sm btn-danger" href="#">
+                        <i class="fas fa-trash"></i> Thùng rác
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        
+                        <th class="text-center" style="width:90px;">Hình</th>
+                        <th>Tên Danh mục</th>
+                        <th class="text-center" style="width:200px;">Chức năng</th>
+                        <th class="text-center" style="width:30px;">ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <img src="~/Content/images/categories/@item.image" class="img-fluid" alt="product.png" />
+
+                            </td>
+                            <td>@item.name</td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-sm btn-success">
+                                    <i class="fas fa-toggle-on"></i>
+                                </a>
+                                <a href="@Url.Action("Detail", "Category", new {id=item.id})" class="btn btn-sm btn-info">
+                                    <i class="far fa-eye"></i>
+                                </a>
+                                <a href="@Url.Action("Edit", "Category", new {id=item.id})" class="btn btn-sm btn-primary">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", "Category", new {id=item.id})" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                @item.id
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

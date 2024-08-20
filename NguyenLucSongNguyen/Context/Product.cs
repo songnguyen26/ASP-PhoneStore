@@ -11,7 +11,8 @@ namespace NguyenLucSongNguyen.Context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -33,5 +34,9 @@ namespace NguyenLucSongNguyen.Context
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase ImageUpload { get; set; }
+        [NotMapped]
+        public bool ShowDropdown { get; set; }
     }
 }

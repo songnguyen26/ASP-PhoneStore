@@ -104,7 +104,8 @@
                 </div>
             </div> <!-- col.// -->
             <div class="row no-gutters items-wrap">
-                @foreach (var item in Model.Products)
+                @foreach (var item in Model.Products.Where(p => p.isOnSale == 1)
+                          .Take(3))
                 {
                     <div class="col-md col-6">
                         <figure class="card-product-grid card-sm">
@@ -124,43 +125,46 @@
     </section>
     <!-- =============== SECTION DEAL // END =============== -->
     <!-- =============== SECTION 1 =============== -->
+    @foreach(var item in Model.Brands)
+            {
+                <section class="padding-bottom">
+                    <header class="section-heading heading-line">
+                        <h4 class="title-section text-uppercase">@item.name</h4>
+                    </header>
+
+                    <div class="card card-home-category">
+                        <div class="row no-gutters">
+                            <div class="col-md-3">
+
+                                <div class="home-category-banner bg-light-orange">
+                                    <h5 class="title">Best trending clothes only for summer</h5>
+                                    <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                    <a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
+                                    <img src="~/Content/images/items/2.jpg" class="img-bg">
+                                </div>
+
+                            </div> <!-- col.// -->
+                            <div class="col-md-9">
+                                <ul class="row no-gutters bordered-cols">
+                                    @foreach (var item1 in Model.Products.Where(p => p.brand_id==item.id))
+                                    {
+                                        <li class="col-6 col-lg-3 col-md-4">
+                                            <a href="#" class="item">
+                                                <div class="card-body">
+                                                    <h6 class="title">@item1.name  </h6>
+                                                    <img class="img-sm float-right" src="~/Content/images/products/@item1.image">
+                                                    <p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div> <!-- col.// -->
+                        </div> <!-- row.// -->
+                    </div> <!-- card.// -->
+                </section>
+            }
     
-    <section class="padding-bottom">
-        <header class="section-heading heading-line">
-            <h4 class="title-section text-uppercase">Apple</h4>
-        </header>
-
-        <div class="card card-home-category">
-            <div class="row no-gutters">
-                <div class="col-md-3">
-
-                    <div class="home-category-banner bg-light-orange">
-                        <h5 class="title">Best trending clothes only for summer</h5>
-                        <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                        <a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
-                        <img src="~/Content/images/items/2.jpg" class="img-bg">
-                    </div>
-
-                </div> <!-- col.// -->
-                <div class="col-md-9">
-                    <ul class="row no-gutters bordered-cols">
-                        @foreach (var item1 in Model.Products.Where(p => p.brand_id.Equals(1)))
-                        {
-                            <li class="col-6 col-lg-3 col-md-4">
-                                <a href="#" class="item">
-                                    <div class="card-body">
-                                        <h6 class="title">@item1.name  </h6>
-                                        <img class="img-sm float-right" src="~/Content/images/products/@item1.image">
-                                        <p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
-                                    </div>
-                                </a>
-                            </li>
-                        }
-                    </ul>
-                </div> <!-- col.// -->
-            </div> <!-- row.// -->
-        </div> <!-- card.// -->
-    </section>
     <!-- =============== SECTION 1 END =============== -->
     <!-- =============== SECTION 2 =============== -->
     <!--<section class="padding-bottom">

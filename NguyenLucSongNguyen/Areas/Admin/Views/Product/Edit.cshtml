@@ -1,0 +1,80 @@
+﻿@model NguyenLucSongNguyen.Context.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/adminLayout.cshtml";
+}
+
+
+<!-- CONTENT -->
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <button type="submit" name="create" class="btn btn-sm btn-success">
+                            <i class="fa fa-save"></i> Lưu
+                        </button>
+                        <a class="btn btn-sm btn-info" href="@Url.Action("Index","Product")">
+                            <i class="fa fa-arrow-left"></i> Về danh sách
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="mb-3">
+                            <label for="name">Tên sản phẩm</label>
+                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="description">Mô tả</label>
+                            @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="category_id">Danh mục</label>
+                            @Html.DropDownListFor(model => model.category_id, (SelectList)ViewBag.CategoryList, "Chọn danh mục", new { @class = "form-control" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="brand_id">Thương hiệu</label>
+                            @Html.DropDownListFor(model => model.brand_id, (SelectList)ViewBag.BrandList, "Chọn thương hiệu", new { @class = "form-control" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="price">Giá</label>
+                            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger", @type = "number" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="saleprice">Giá khuyến mãi</label>
+                            @Html.EditorFor(model => model.salePrice, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.salePrice, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image">Hình</label>
+                            <input type="file" name="ImageUpload" class="form-control" />
+                            @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.DropDownListFor(m => m.ShowDropdown,
+                            new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Không đề xuất", Value = "false" },
+                                new SelectListItem { Text = "Đề xuất", Value = "true" }
+                            }, new { @class = "form-control" })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+}

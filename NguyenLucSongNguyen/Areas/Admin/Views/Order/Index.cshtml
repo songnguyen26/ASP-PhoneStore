@@ -1,0 +1,50 @@
+﻿@model IEnumerable<NguyenLucSongNguyen.Context.Order>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/adminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12 text-right">
+                    <a class="btn btn-sm btn-danger" href="#">
+                        <i class="fas fa-trash"></i> Thùng rác
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+
+                        <th>Mã đơn hàng</th>
+                        <th>Mã khách hàng</th>
+                        <th>Ngày mua</th>
+
+                        <th class="text-center" style="width:200px;">Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.id</td>
+                            <td>@item.user_id</td>
+                            <td>@item.created_at</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Detail", "Order", new {id=@item.id})" class="btn btn-sm btn-info">
+                                    <i class="far fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

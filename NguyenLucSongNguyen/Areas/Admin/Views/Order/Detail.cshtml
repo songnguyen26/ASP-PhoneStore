@@ -1,0 +1,47 @@
+﻿@model IEnumerable<NguyenLucSongNguyen.Context.OrderDetail>
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/adminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12 text-right">
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("Index","Order")">
+                        <i class="fa fa-arrow-lefth"></i> Về danh sách
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+
+                        <th>Mã đơn hàng</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.order_id</td>
+                            <td>@item.product_id</td>
+                            <td>@item.quantity</td>
+                            <td>@item.price</td>
+                            
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<NguyenLucSongNguyen.Context.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="container">
+
+    <nav class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+
+                <div class="card card-category">
+                    <div class="img-wrap" style="background: #ffd7d7">
+                        <img src="~/Content/images/categories/@item.image">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"><a href="@Url.Action("productByCat", "Product", new {id=item.id})">@item.name</a></h4>
+                    </div>
+                </div>
+            </div> <!-- col.// -->
+        }
+
+
+    </nav> <!-- row.// -->
+
+
+</div>
+

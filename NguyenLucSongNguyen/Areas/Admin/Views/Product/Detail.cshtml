@@ -1,0 +1,33 @@
+﻿@model  NguyenLucSongNguyen.Context.Product
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/adminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="card">
+        
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width:30%;">
+                            <strong>Tên trường</strong>
+                        </th>
+                        <th class="text-center" style="width:70%;">Giá trị</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var prop in Model.GetType().GetProperties())
+                    {
+                        <tr>
+                            <td>@prop.Name</td>
+                            <td>@prop.GetValue(Model)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
